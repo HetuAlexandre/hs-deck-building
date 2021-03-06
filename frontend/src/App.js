@@ -2,8 +2,8 @@ import React from "react"
 
 const App = () => {
   return (
-    <div>this is my test
-      
+    <div>should be in main
+
     </div> 
   )
 }
