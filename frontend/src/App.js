@@ -1,10 +1,18 @@
-import React from "react"
+import React, { useEffect } from "react"
+import GlobalStyles from "./GlobalStyles"
+import { Switch, Route, BrowserRouter, Redirect} from "react-router-dom" 
+
 
 const App = () => {
   return (
-    <div>should be in main
+    <BrowserRouter>
+    <GlobalStyles />
+    <Switch>
+      <Route exact path="/">
 
-    </div> 
+      </Route>
+    </Switch>
+    </BrowserRouter>
   )
 }
 
