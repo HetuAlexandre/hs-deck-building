@@ -1,5 +1,5 @@
 import { createStore } from "redux"
-import reducer from "./reducers"
+import reducer from "./reducers/auth-reducer"
 
 export default function configureStore(initialState){
     const store = createStore(
