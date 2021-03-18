@@ -32,10 +32,10 @@ app
     const authString = Buffer.from(clientID + ":" + clientSecret).toString(
       "base64"
     );
-
+    // body: JSON.stringify({ })
     const response = await fetch("https://us.battle.net/oauth/token", {
       method: "POST",
-      body: JSON.stringify({ grant_type: "client_credentials" }),
+      grant_type: "client_credentials",
       headers: {
         Authorization: `Basic ${authString}`,
         "Content-Type": "application/x-www-form-urlencoded",

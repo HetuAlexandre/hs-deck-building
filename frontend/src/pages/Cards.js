@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-// import ReactPaginate from "react-paginate";
+import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import { CardsContext } from "../Provider/CardsContext";
-// import Pagination from "../components/Pagination";
+import Pagination from "../components/Pagination";
 
 const Cards = () => {
   const { cards, cardsStatus, pageCount, setCurrentPage } = useContext(
@@ -46,31 +46,6 @@ const Img = styled.img`
 `;
 
 export default Cards;
-
-// const [cards, setCards] = useState(null)
-// const [filteredCards, setFilteredCards] = useState(cards);
-// const [status, setStatus] = useState("loading");
-
-// useEffect(() => {
-//   fetch(
-//     `https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=${accessToken}`
-//   )
-//     .then((res) => {
-//       setCards(res.cards);
-
-//       //res={cards: Array(40), cardCount: 3092, pageCount: 78, page: 1}
-
-//       console.log(res, "CARDS");
-
-//       setStatus("idle");
-//     })
-//     .catch((error) => {
-//       console.error("unable to retrieve card", error);
-//     });
-// }, []);
-// useEffect(() => {
-//   setCurrentPage(0);
-// }, [cards]);
 
 // const Pagination = styled.div`
 //   width: 100%;

@@ -6,14 +6,14 @@ export const CardsContext = createContext(null);
 
 export const CardsProvider = ({ children }) => {
   const [cards, setCards] = useState(null);
-  const [pageCount, setPageCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [pageCount, setPageCount] = useState(0);
+  // const [currentPage, setCurrentPage] = useState(1);
   const [cardsStatus, setCardsStatus] = useState("loading");
 
   useEffect(() => {
     setCardsStatus("loading");
     fetch(
-      `https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=${accessToken}}`
+      `https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=${accessToken}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -32,9 +32,9 @@ export const CardsProvider = ({ children }) => {
       value={{
         cards,
         cardsStatus,
-        pageCount,
-        currentPage,
-        setCurrentPage,
+        // pageCount,
+        // currentPage,
+        // setCurrentPage,
       }}
     >
       {children}
