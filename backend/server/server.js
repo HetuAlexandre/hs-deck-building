@@ -4,7 +4,7 @@ const fetch = require("node-fetch");
 const morgan = require("morgan");
 const app = new express();
 require("dotenv").config();
-const { getOneCard } = require("../handlers/handlers");
+const { getCards, getCardDetail } = require("../handlers/handlers");
 
 const port = 8000;
 app
@@ -48,7 +48,8 @@ app
 
   //REQUEST
 
-  .get("/hearthstone/cards/:idorslug", getOneCard)
+  .get("/us.api.blizzard.com/hearthstone/cards/:id", getCardDetail)
+  .get("/us.api.blizzard.com/hearthstone/cards", getCards)
 
   .get("*", (req, res) =>
     res.status(404).json({
