@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import GlobalStyles from "./GlobalStyles";
 import styled from "styled-components";
 import { BrowserRouter } from "react-router-dom";
-
+import { CardsContext } from "./Provider/CardsContext";
 import NavBar from "./components/NavBar";
 import { useDispatch } from "react-redux";
 import {
@@ -10,9 +10,11 @@ import {
   receiveAccessToken,
   receiveAccessTokenError,
 } from "./store/actions";
+
 import Routes from "./routes";
 
 const App = () => {
+  const { cards, cardStatus } = useContext(CardsContext);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,6 +30,9 @@ const App = () => {
         dispatch(receiveAccessTokenError(err));
       });
   }, []);
+  if (cardStatus === "loading") {
+    return <p>Loading...</p>;
+  }
   return (
     <BrowserRouter>
       <GlobalStyles />
@@ -39,7 +44,6 @@ const App = () => {
   );
 };
 const Container = styled.div`
-  width: 100%;
   height: 100%;
   margin: 20px;
 `;
