@@ -13,21 +13,19 @@ export const CardsProvider = ({ children }) => {
   useEffect(() => {
     setCardsStatus("loading");
     fetch(
-      `https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=${accessToken}&page=${
-        currentPage + 1
-      }`
+      `https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=${accessToken}}`
     )
       .then((res) => res.json())
       .then((res) => {
         setCards(Object.values(res.cards));
-        setPageCount(res.pageCount);
+        // setPageCount(res.pageCount);
         setCardsStatus("idle");
       })
       .catch((error) => {
-        console.error("Unable to retreive cards", error);
+        console.error("Unable to retrieve cards", error);
         setCardsStatus("error");
       });
-  }, [currentPage]);
+  }, []);
 
   return (
     <CardsContext.Provider

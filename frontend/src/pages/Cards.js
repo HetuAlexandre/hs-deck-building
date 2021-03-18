@@ -3,7 +3,7 @@ import styled from "styled-components";
 // import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import { CardsContext } from "../Provider/CardsContext";
-import Pagination from "../components/Pagination";
+// import Pagination from "../components/Pagination";
 
 const Cards = () => {
   const { cards, cardsStatus, pageCount, setCurrentPage } = useContext(
@@ -15,7 +15,6 @@ const Cards = () => {
   } else {
     return (
       <Wrapper>
-        {/* <Pagination /> */}
         {cards.map((card) => {
           if (card.artistName != null)
             return (
