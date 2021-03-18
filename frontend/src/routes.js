@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import News from "./pages/News";
 import Cards from "./pages/Cards";
+import CardDetail from "./pages/CardDetail";
 import DeckBuilders from "./pages/DeckBuilders";
 import Decks from "./pages/Decks";
 import Profile from "./pages/Profile";
@@ -20,6 +21,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/cards">
         <Cards />
+      </Route>
+      <Route exact path="/cardDetail/:id">
+        <CardDetail />
       </Route>
       <Route exact path="/deckbuilders">
         <DeckBuilders />

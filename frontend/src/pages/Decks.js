@@ -1,13 +1,8 @@
-import React from "react"
-import styled from "styled-components"
-
+import React from "react";
+// import styled from "styled-components"
 
 const Decks = () => {
-    return(
-        <div>
-            Most popular hearthstone decks
-        </div>
-    )
-}
+  return <div>Most popular hearthstone decks</div>;
+};
 
-export default Decks
+export default Decks;
