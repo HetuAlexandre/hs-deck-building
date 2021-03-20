@@ -17,25 +17,13 @@ const NavBar = () => {
           <ButtonNav to={"/profile"}>PROFILE</ButtonNav>
         </ButtonContainer>
       </NavWrapper>
-      <Filter></Filter>
     </Wrapper>
   );
 };
 const Wrapper = styled.div`
   width: 100%;
-  height: 300px;
-  border: 2px solid pink;
-`;
-const Filter = styled.div`
-  height: 200px;
-  background-color: gray;
-  overflow: hidden;
 
-  /* img {
-    width: 100%;
-    height: 200px;
-    
-  } */
+  border: 2px solid pink;
 `;
 
 const NavWrapper = styled.div`

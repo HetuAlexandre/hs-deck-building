@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import GlobalStyles from "./GlobalStyles";
 import styled from "styled-components";
 import { BrowserRouter } from "react-router-dom";
 // import { CardsContext } from "./Provider/CardsContext";
 import NavBar from "./components/NavBar";
+import Filter from "./components/Filter";
 import { useDispatch } from "react-redux";
 import {
   requestAccessToken,
@@ -36,13 +37,17 @@ const App = () => {
   return (
     <BrowserRouter>
       <GlobalStyles />
-      <NavBar />
+      <Header>
+        <NavBar />
+        <Filter />
+      </Header>
       <Container>
         <Routes />
       </Container>
     </BrowserRouter>
   );
 };
+const Header = styled.div``;
 const Container = styled.div`
   height: 100%;
   margin: 20px;
