@@ -1,18 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-
 import { useDispatch } from "react-redux";
 import { updateQuantity, removeCard } from "../store/actions";
 
 const CardInDeck = ({ card, id, quantity }) => {
   const dispatch = useDispatch();
-
+  console.log(quantity, "quantity");
   const updateQuantityInDeck = (id, quantity) => {
     const actionUpdate = updateQuantity(id, quantity);
     dispatch(actionUpdate);
   };
-  const removeCardInDeck = (card, id) => {
-    const actionRemove = removeCard(id, card);
+  const removeCardInDeck = () => {
+    const actionRemove = removeCard(id);
     dispatch(actionRemove);
   };
   return (
@@ -25,13 +24,8 @@ const CardInDeck = ({ card, id, quantity }) => {
         <QuantityButton onClick={() => updateQuantityInDeck(id, quantity + 1)}>
           +
         </QuantityButton>
-        <DeleteButton onClick={() => removeCardInDeck(id, card)}>
-          x
-        </DeleteButton>
-        <Quantity
-          value={quantity}
-          onChange={(ev) => updateQuantityInDeck(id, parseInt(ev.target.value))}
-        ></Quantity>
+        <DeleteButton onClick={removeCardInDeck}>x</DeleteButton>
+        <Quantity>{quantity}</Quantity>
       </Container>
     </Wrapper>
   );

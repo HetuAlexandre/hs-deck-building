@@ -18,9 +18,8 @@ export const addCard = (card) => ({
   card,
 });
 
-export const removeCard = (id, card) => ({
+export const removeCard = (id) => ({
   type: "REMOVE_CARD",
-  card,
   id,
 });
 export const updateQuantity = (id, quantity) => ({

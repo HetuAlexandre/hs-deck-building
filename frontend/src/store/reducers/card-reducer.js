@@ -14,8 +14,8 @@ export default function cardReducer(state = initialState, action) {
       };
     case "REMOVE_CARD": {
       const stateCopy = { ...state };
-      delete stateCopy[action.card.id];
-      return;
+      delete stateCopy[action.id];
+      return stateCopy;
     }
     case "UPDATE_CARD":
       return {

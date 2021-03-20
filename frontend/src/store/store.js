@@ -1,11 +1,9 @@
 import { createStore } from "redux";
-import reducer from "./reducers/auth-reducer";
-import cardReducer from "./reducers/cardReducer";
+import reducers from "./reducers";
 
 export default function configureStore(initialState) {
   const store = createStore(
-    reducer,
-    cardReducer,
+    reducers,
     initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
