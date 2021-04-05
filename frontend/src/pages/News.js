@@ -1,8 +1,8 @@
-import React from "react";
-// import styled from "styled-components"
+// import React from "react";
+// // import styled from "styled-components"
 
-const News = () => {
-  return <div>News about hearthstone</div>;
-};
+// const News = () => {
+//   return <div>News about hearthstone</div>;
+// };
 
-export default News;
+// export default News;

@@ -6,10 +6,11 @@ export const CardsContext = createContext(null);
 
 export const CardsProvider = ({ children }) => {
   const [cards, setCards] = useState(null);
-  const [metaCards, setMetaCards] = useState(null);
+  // const [metaCards, setMetaCards] = useState(null);
   // const [pageCount, setPageCount] = useState(0);
   // const [currentPage, setCurrentPage] = useState(1);
   const [cardsStatus, setCardsStatus] = useState("loading");
+
   // Cards
   useEffect(() => {
     setCardsStatus("loading");
@@ -20,6 +21,7 @@ export const CardsProvider = ({ children }) => {
       .then((res) => {
         setCards(Object.values(res.cards));
         // setPageCount(res.pageCount);
+        console.log(res.cards, "response cards");
         setCardsStatus("idle");
       })
       .catch((error) => {

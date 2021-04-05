@@ -1,16 +1,18 @@
 import React, { useContext, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import CardInDeck from "../components/CardInDeck";
+import { Link, useParams } from "react-router-dom";
 import { CardsContext } from "../Provider/CardsContext";
 import { addCard } from "../store/actions";
+import Deck from "./Deck";
+import { classes } from "../components/cardsItems.json";
 
 const DeckBuilders = () => {
-  const storeCards = useSelector((state) => state.card);
-  // const [card, setCard] = useState(null);
+  const { classId } = useParams();
   const [quantityCard, setQuantityCard] = useState(1);
+  const [searchCards, setSearchCards] = useState("");
   const { cards, cardsStatus } = useContext(CardsContext);
+  const nonHerosCards = cards && cards.filter((card) => card.cardTypeId !== 3);
   const dispatch = useDispatch();
 
   const addQuantity = (quantity) => {
@@ -18,7 +20,6 @@ const DeckBuilders = () => {
   };
   const addToDeck = (card) => {
     const actionAddToDeck = addCard({ ...card, quantity: quantityCard });
-    console.log(actionAddToDeck, "action");
     dispatch(actionAddToDeck);
   };
 
@@ -27,9 +28,22 @@ const DeckBuilders = () => {
   } else {
     return (
       <Wrapper>
-        <ContainerCards>
-          {cards.map((card) => {
-            if (card.artistName != null)
+        <DivCover>
+          <ImgCover src={classes[classId].cover} />
+        </DivCover>
+        <Search>
+          <Input
+            type="text"
+            placeholder="Search..."
+            placeholderTextColor="white"
+            onChange={(event) => {
+              setSearchCards(event.target.value);
+            }}
+          />
+        </Search>
+        <Container>
+          <CardsWrapper>
+            {nonHerosCards.map((card) => {
               return (
                 <CardContainer>
                   <CardDiv>
@@ -50,47 +64,99 @@ const DeckBuilders = () => {
                   </CardDiv>
                 </CardContainer>
               );
-          })}
-        </ContainerCards>
-        <ContainerDeck>
-          <Header>Create a deck</Header>
-          <Deck>
-            {storeCards &&
-              Object.values(storeCards).map((card) => {
-                return (
-                  <CardInDeck
-                    key={card.id}
-                    card={card}
-                    id={card.id}
-                    quantity={card.quantity}
-                  />
-                );
-              })}
-          </Deck>
-          <Footer>Copy deck</Footer>
-        </ContainerDeck>
+            })}
+          </CardsWrapper>
+          <Deck />
+        </Container>
       </Wrapper>
     );
   }
 };
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  z-index: -6;
+`;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: #fff5d0;
+`;
+const DivCover = styled.div`
+  height: 300px;
+`;
+const ImgCover = styled.img`
+  width: 100%;
+  height: 300px;
+`;
+const Search = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  background-color: darkred;
+  border-top: 3px solid #c92626;
+  border-bottom: 3px solid #c92626;
+`;
+const Input = styled.input`
+  width: 250px;
+  height: 30px;
+  font-size: 18px;
+  padding-left: 30px;
+  /* color: white; */
+  font-weight: 900;
+  border: 3px solid rgb(252, 209, 68);
+  border-radius: 20px;
+  background-color: darkred;
+  &:hover {
+    box-shadow: 0 0 30px rgb(252, 209, 68);
+    border: 3px solid rgb(252, 209, 68);
+  }
+  &::-webkit-input-placeholder {
+    color: lightgray;
+    /* text-decoration: none; */
+  }
+`;
+const CardsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
 `;
-
-const CardContainer = styled.div``;
-
-const CardDiv = styled(Link)`
-  margin-bottom: 20px;
+const CardContainer = styled.div`
+  height: 300px;
+  max-width: 400px;
 `;
+
 const DetailIcon = styled(Link)`
-  width: 30px;
-  height: 30px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 2px solid black;
   text-decoration: none;
   font-weight: bold;
+  z-index: 5;
+  position: absolute;
+  color: white;
+  background-color: black;
+  font-size: 35px;
+`;
+const CardDiv = styled(Link)`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  &:hover {
+    ${DetailIcon} {
+      display: flex;
+    }
+  }
 `;
 
 const Img = styled.img`
@@ -98,40 +164,5 @@ const Img = styled.img`
   max-width: 400px;
   filter: drop-shadow(rgba(0, 0, 0, 0.6) 0px 3px 3px);
 `;
-const ContainerCards = styled.div`
-  width: 100%;
-  /* background-color: lightgreen; */
-`;
-const ContainerDeck = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* position: sticky; */
-  width: 450px;
-  height: 700px;
-  border: 2px solid brown;
-`;
-const Header = styled.div`
-  justify-content: center;
-  height: 100px;
-  padding: 10px;
-`;
-const Deck = styled.div`
-  justify-content: center;
-  align-content: center;
-  padding: 10px;
-  width: 400px;
-  height: 100%;
-  border: 2px solid brown;
-`;
-// const Card = styled.div`
-//   height: 40px;
-//   border: 2px solid blue;
-//   margin-bottom: 4px;
-// `;
-const Footer = styled.div`
-  justify-content: center;
-  height: 100px;
-  padding: 10px;
-`;
+
 export default DeckBuilders;

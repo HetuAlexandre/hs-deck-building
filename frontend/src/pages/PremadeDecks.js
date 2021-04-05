@@ -1,8 +1,8 @@
 import React from "react";
 // import styled from "styled-components"
 
-const Decks = () => {
+const PremadeDecks = () => {
   return <div>Most popular hearthstone decks</div>;
 };
 
-export default Decks;
+export default PremadeDecks;

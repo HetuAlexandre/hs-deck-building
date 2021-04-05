@@ -1,14 +1,13 @@
 import React from "react";
-
 import { Switch, Route } from "react-router-dom";
-
 import Homepage from "./pages/Homepage";
 import News from "./pages/News";
 import Cards from "./pages/Cards";
 import CardDetail from "./pages/CardDetail";
 import DeckBuilders from "./pages/DeckBuilders";
-import Decks from "./pages/Decks";
+import PremadeDecks from "./pages/PremadeDecks";
 import Profile from "./pages/Profile";
+import SelectClasses from "./pages/SelectClasses";
 
 const Routes = () => {
   return (
@@ -25,11 +24,14 @@ const Routes = () => {
       <Route exact path="/cardDetail/:id">
         <CardDetail />
       </Route>
-      <Route exact path="/deckbuilders">
+      <Route exact path="/selectClasses">
+        <SelectClasses />
+      </Route>
+      <Route exact path="/deckbuilders/:classId">
         <DeckBuilders />
       </Route>
-      <Route exact path="/decks">
-        <Decks />
+      <Route exact path="/premadeDecks">
+        <PremadeDecks />
       </Route>
       <Route exact path="/profile">
         <Profile />
