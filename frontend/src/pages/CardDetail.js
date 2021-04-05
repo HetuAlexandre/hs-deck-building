@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import parse from "html-react-parser";
-import cardsItems from "../components/cardsItems.json";
+import {
+  types,
+  minionTypes,
+  rarities,
+  sets,
+  classes,
+  keywords,
+  spellSchools,
+} from "../components/cardsItems.json";
 // import { CardsContext } from "../Provider/CardsContext";
 
 const accessToken = process.env.REACT_APP_ACCESS_TOKEN;
 
 const CardDetail = () => {
   // const { metaCards } = useContext(CardsContext);
-  let currentId = useParams().id;
+  const currentId = useParams().id;
   const [card, setCard] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     fetch(
@@ -19,51 +28,59 @@ const CardDetail = () => {
       .then((res) => res.json())
       .then((res) => {
         setCard(res);
-        console.log(res, "res");
+        console.log(res, "response");
       })
       .catch((error) => {
         console.error("unable to retrieve card", error);
       });
   }, [currentId]);
-  console.log(cardsItems, "cards items");
+
   if (!card) {
     return <p>Loading...</p>;
   }
+  console.log(card.keywordsIds, "keywords");
   return (
     <Wrapper>
-      <ExitButton to={"/cards"}>x</ExitButton>
-      <Container>
-        <Img src={card.image}></Img>
-        <CardInfo>
-          <h1>{card.name}</h1>
-          <p>{card.flavorText}</p>
-          <p>{parse(card.text)}</p>
-          <TextUl>
-            <TextLi>
-              <span>Type:</span> {(cardsItems.types = card.cardTypeId)}
-            </TextLi>
-            <TextLi>
-              <span>Minion Type:</span> {card.minionTypeId}
-            </TextLi>
-            <TextLi>
-              <span>Rarity:</span> {card.rarityId}
-            </TextLi>
-            <TextLi>
-              <span>Set:</span> {card.cardSetId}
-            </TextLi>
-            <TextLi>
-              <span>Class:</span> {card.classId}
-            </TextLi>
-            <TextLi>
-              <span>Artist:</span> {card.artistName}
-            </TextLi>
-            <TextLi>
-              <span>{card.collectible}</span>
-            </TextLi>
-          </TextUl>
-          <p>{card.keywordsIds}</p>
-        </CardInfo>
-      </Container>
+      <ExitContainer onClick={() => history.push("/cards")}>
+        <ExitButton to={"/cards"}>x</ExitButton>
+        <Container onClick={(event) => event.stopPropagation()}>
+          <Img src={card.image}></Img>
+          <CardInfo>
+            <CardName>{card.name}</CardName>
+            <FlavorText>{card.flavorText}</FlavorText>
+            <CardText>{parse(card.text)}</CardText>
+            <TextUl>
+              <TextLi>
+                Type: <span>{types[card.cardTypeId]}</span>
+              </TextLi>
+              {card.minionTypeId !== undefined && (
+                <TextLi>
+                  Minion Type: <span>{minionTypes[card.minionTypeId]}</span>
+                </TextLi>
+              )}
+              {/* { count && <h1>Messages: {count}</h1>} */}
+              {card.spellSchoolId && (
+                <TextLi>
+                  Spell School: <span>{spellSchools[card.spellSchoolId]} </span>
+                </TextLi>
+              )}
+              <TextLi>
+                Rarity: <span> {rarities[card.rarityId]}</span>
+              </TextLi>
+              <TextLi>
+                Set: <span>{sets[card.cardSetId]}</span>
+              </TextLi>
+              <TextLi>
+                Class: <span>{classes[card.classId]}</span>
+              </TextLi>
+              <TextLi>
+                Artist: <span>{card.artistName}</span>
+              </TextLi>
+            </TextUl>
+            <span>{keywords[card.keywordsIds]}</span>
+          </CardInfo>
+        </Container>
+      </ExitContainer>
     </Wrapper>
   );
   // }
@@ -80,11 +97,25 @@ const Wrapper = styled.div`
   left: 0;
   position: absolute;
 `;
+const ExitContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+const ExitButton = styled(Link)`
+  font-size: 60px;
+  color: #fcd144;
+  text-decoration: none;
+  position: fixed;
+  top: 50px;
+  right: 45px;
+`;
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 50px;
 `;
 const Img = styled.img`
   height: 500px;
@@ -94,31 +125,34 @@ const Img = styled.img`
 const CardInfo = styled.div`
   text-align: left;
   height: 440px;
+  width: 500px;
   color: white;
-  h1 {
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-weight: bold;
-  }
+`;
+const CardName = styled.h1`
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 700;
+  margin-bottom: 0px;
+`;
+const CardText = styled.p`
+  font-size: 25px;
+`;
+const FlavorText = styled.p`
+  font-size: 25px;
+  opacity: 0.5;
+  font-style: italic;
+  margin: 5px 0;
 `;
 const TextUl = styled.ul`
-  color: white;
+  color: #ffe5ac;
   padding: 15px;
   font-size: 20px;
 `;
 const TextLi = styled.li`
-  color: white;
+  color: #ffe5ac;
+  margin-bottom: 5px;
   span {
     color: white;
   }
-`;
-const ExitButton = styled(Link)`
-  font-size: 50px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #fcd144;
-  text-decoration: none;
-  position: relative;
-  top: 0px;
-  /* right: -100px; */
 `;
 
 export default CardDetail;
