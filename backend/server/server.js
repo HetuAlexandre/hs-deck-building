@@ -4,9 +4,10 @@ const fetch = require("node-fetch");
 const morgan = require("morgan");
 const app = new express();
 require("dotenv").config();
-const { getCards, getCardDetail } = require("../handlers/handlers");
+const { login, signup } = require("../handlers/handlers");
 
 const port = 8000;
+
 app
   .use(function (req, res, next) {
     res.header(
@@ -19,16 +20,19 @@ app
     );
     next();
   })
+
+  //XXXXXXXXXXXXX Middleware XXXXXXXXXXXXX
+
   .use(morgan("tiny"))
   .use(bodyParser.json())
-
-  .use(bodyParser.urlencoded({ extended: false }))
+  .use(express.urlencoded({ extended: false }))
   .use(bodyParser.json())
+
+  //XXXXXXXXXXXXX  Blizzard api XXXXXXXXXXXXX
 
   .get("/battle.net_access_token", async (req, res, next) => {
     const clientID = process.env.BNET_ID;
     const clientSecret = process.env.BNET_SECRET;
-    console.log(clientSecret, clientID, "CLIENT");
     const authString = Buffer.from(clientID + ":" + clientSecret).toString(
       "base64"
     );
@@ -42,14 +46,13 @@ app
       },
     });
     const json = await response.json();
-    console.log(json, "XXXXXXX");
     res.status(200).json(json);
   })
 
-  //REQUEST
+  //XXXXXXXXXXXXX REQUEST XXXXXXXXXXXXXXXX
 
-  .get("/us.api.blizzard.com/hearthstone/cards/:id", getCardDetail)
-  .get("/us.api.blizzard.com/hearthstone/cards", getCards)
+  .post("/login", login)
+  .post("/signup", signup)
 
   .get("*", (req, res) =>
     res.status(404).json({
