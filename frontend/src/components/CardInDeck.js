@@ -29,9 +29,10 @@ const CardInDeck = ({ card, id, quantity }) => {
           <Button
             onClick={() => updateQuantityInDeck(id, quantity + 1)}
             disabled={
-              quantity == 2
+              quantity === 2
                 ? true
-                : false && (card.rarityId === 5 && quantity == 1 ? true : false)
+                : false &&
+                  (card.rarityId === 5 && quantity === 1 ? true : false)
             }
           >
             +
