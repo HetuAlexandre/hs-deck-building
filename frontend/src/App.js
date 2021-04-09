@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import GlobalStyles from "./GlobalStyles";
 import styled from "styled-components";
 import { BrowserRouter } from "react-router-dom";
-// import { CardsContext } from "./Provider/CardsContext";
 import NavBar from "./components/NavBar";
 
 import { useDispatch } from "react-redux";
@@ -15,7 +14,6 @@ import {
 import Routes from "./routes";
 
 const App = () => {
-  // const { cardStatus } = useContext(CardsContext);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,15 +23,11 @@ const App = () => {
       .then((json) => {
         dispatch(receiveAccessToken(json.access_token));
       })
-
       .catch((err) => {
         console.log(err);
         dispatch(receiveAccessTokenError(err));
       });
   }, []);
-  // if (cardStatus === "loading") {
-  //   return <p>Loading...</p>;
-  // }
   return (
     <BrowserRouter>
       <GlobalStyles />
