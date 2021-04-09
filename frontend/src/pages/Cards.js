@@ -25,7 +25,7 @@ const Cards = () => {
         </Search>
         {nonHerosCards
           .filter((card) => {
-            if (searchCards == "") {
+            if (searchCards === "") {
               return card;
             } else if (
               card.name.toLowerCase().includes(searchCards.toLocaleLowerCase())
@@ -48,16 +48,17 @@ const Cards = () => {
   }
 };
 const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
   background-color: #fff5d0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+
   margin: 0;
 `;
 const Container = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0;
 `;
 const CardContainer = styled.div`
@@ -83,6 +84,7 @@ const Input = styled.input`
   border: 3px solid rgb(252, 209, 68);
   border-radius: 20px;
   background-color: darkred;
+  outline: none;
   &:hover {
     box-shadow: 0 0 30px rgb(252, 209, 68);
     border: 3px solid rgb(252, 209, 68);
@@ -152,8 +154,8 @@ export default Cards;
 // const offset = currentPage * cardsPerPage;
 // const currentPageCards = cards.slice(offset, offset + cardsPerPage);
 // const numPages = Math.ceil(cards.length / cardsPerPage);
-{
-  /* {pageCount > 1 ? (
+// {
+/* {pageCount > 1 ? (
           <Pagination>
             <ReactPaginate
               previousLabel={"Previous"}
@@ -169,4 +171,4 @@ export default Cards;
             />
           </Pagination>
         ) : null} */
-}
+// }
