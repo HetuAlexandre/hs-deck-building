@@ -43,28 +43,41 @@ const DeckBuilders = () => {
         </Search>
         <Container>
           <CardsWrapper>
-            {nonHerosCards.map((card) => {
-              return (
-                <CardContainer>
-                  <CardDiv>
-                    <DetailIcon to={`/cardDetail/${card.id}`}>i</DetailIcon>
-                    <Img
-                      src={card.image}
-                      onClick={() => {
-                        if (quantityCard > 1) {
-                          addQuantity(quantityCard - 1);
+            {nonHerosCards
+              .filter((card) => {
+                if (searchCards === "") {
+                  return card;
+                } else if (
+                  card.name
+                    .toLowerCase()
+                    .includes(searchCards.toLocaleLowerCase())
+                )
+                  return card;
+              })
+              .map((card) => {
+                return (
+                  <CardContainer>
+                    <CardDiv>
+                      <DetailIcon to={`/cardDetail/${card.id}`}>i</DetailIcon>
+                      <Img
+                        src={card.image}
+                        onClick={() => {
+                          if (quantityCard > 1) {
+                            addQuantity(quantityCard - 1);
+                          }
+                          addToDeck(card);
+                        }}
+                      ></Img>
+                      <div
+                        value={quantityCard}
+                        onChange={(ev) =>
+                          addQuantity(parseInt(ev.target.value))
                         }
-                        addToDeck(card);
-                      }}
-                    ></Img>
-                    <div
-                      value={quantityCard}
-                      onChange={(ev) => addQuantity(parseInt(ev.target.value))}
-                    ></div>
-                  </CardDiv>
-                </CardContainer>
-              );
-            })}
+                      ></div>
+                    </CardDiv>
+                  </CardContainer>
+                );
+              })}
           </CardsWrapper>
           <Deck />
         </Container>
@@ -76,10 +89,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-
-  z-index: -6;
+  z-index: -999;
 `;
 const Container = styled.div`
+  height: 100vh;
   display: flex;
   justify-content: center;
   padding: 20px;
@@ -107,7 +120,7 @@ const Input = styled.input`
   height: 30px;
   font-size: 18px;
   padding-left: 30px;
-  /* color: white; */
+  color: lightgray;
   font-weight: 900;
   border: 3px solid rgb(252, 209, 68);
   border-radius: 20px;
