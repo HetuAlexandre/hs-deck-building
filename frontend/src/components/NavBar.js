@@ -9,11 +9,16 @@ const NavBar = () => {
           <span>HEARTHSTONE</span> DECK BUILDER
         </Home>
         <ButtonContainer>
-          {/* <ButtonNav to={"/news"}>NEWS</ButtonNav> */}
-          <ButtonNav to={"/cards"}>CARDS</ButtonNav>
-          <ButtonNav to={"/selectClasses"}>DECK BUILDERS</ButtonNav>
-          <ButtonNav to={"/premadeDecks"}>DECKS</ButtonNav>
-          <ButtonNav to={"/profile"}>PROFILE</ButtonNav>
+          <ButtonDiv>
+            {/* <ButtonNav to={"/news"}>NEWS</ButtonNav> */}
+            <ButtonNav to={"/cards"}>CARDS</ButtonNav>
+            <ButtonNav to={"/selectClasses"}>DECK BUILDERS</ButtonNav>
+            <ButtonNav to={"/premadeDecks"}>DECKS</ButtonNav>
+          </ButtonDiv>
+          <ButtonDivLogin>
+            <ButtonNav to={"/login"}>LOGIN</ButtonNav>
+            <ButtonNav to={"/profile"}>PROFILE</ButtonNav>
+          </ButtonDivLogin>
         </ButtonContainer>
       </NavWrapper>
     </Wrapper>
@@ -53,9 +58,21 @@ const Home = styled(Link)`
 const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
-  /* justify-content: center; */
+  justify-content: space-between;
   align-items: center;
 `;
+const ButtonDiv = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+`;
+const ButtonDivLogin = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
 const ButtonNav = styled(Link)`
   color: rgb(252, 209, 68);
   display: flex;
