@@ -46,7 +46,9 @@ const Deck = () => {
               );
             })}
         </DeckDiv>
-        <Footer>Copy deck</Footer>
+        <Footer>
+          <CopyButton>COPY DECK CODE</CopyButton>
+        </Footer>
       </ContainerDeck>
     );
   }
@@ -57,7 +59,7 @@ const ContainerDeck = styled.div`
   justify-content: center;
   width: 400px;
   height: 100%;
-  border: 20px ridge #a86632;
+  border: 20px ridge #8b4513;
   border-radius: 10px;
   z-index: 3;
 `;
@@ -68,7 +70,7 @@ const Header = styled.div`
   justify-content: center;
   height: 110px;
   padding: 20px;
-  border-bottom: 15px ridge #a86632;
+  border-bottom: 15px ridge #8b4513;
   position: relative;
 `;
 const Img = styled.img`
@@ -115,10 +117,30 @@ const DeckDiv = styled.div`
   } */
 `;
 const Footer = styled.div`
+  display: flex;
   justify-content: center;
+  align-items: center;
   height: 80px;
-  padding: 10px;
-  border-top: 15px ridge #a86632;
-  background-color: gray;
+  padding: 5px;
+  border-top: 15px ridge #8b4513;
+  background-color: #8b4513;
+`;
+const CopyButton = styled.button`
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 300px;
+  height: 60px;
+  color: white;
+  border-radius: 6px;
+  font-weight: 900;
+  font-size: 15px;
+  background-image: linear-gradient(90deg, #4c0d7a, #b921ca, #4c0d7a);
+
+  border: 3px solid, #661f91;
+
+  &:hover {
+    background-image: linear-gradient(90deg, #921b9a, #b921ca, #921b9a);
+  }
 `;
 export default Deck;
