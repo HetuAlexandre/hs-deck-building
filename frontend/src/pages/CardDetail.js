@@ -71,7 +71,7 @@ const CardDetail = () => {
                 Set: <span>{sets[card.cardSetId]}</span>
               </TextLi>
               <TextLi>
-                Class: <span>{classes[card.classId]}</span>
+                Class: <span>{classes[card.classId].name}</span>
               </TextLi>
               <TextLi>
                 Artist: <span>{card.artistName}</span>
