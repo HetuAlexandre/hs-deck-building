@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { UserContext } from "../Provider/UserContext";
 
@@ -36,14 +36,14 @@ const Profile = () => {
   return (
     <Wrapper>
       {!user ? (
-        <h1>You must create an account first.</h1>
+        <H1 to={"./signup"}>You must create an account first.</H1>
       ) : (
         <Container>
           <h3>Profile details</h3>
           {error && <div>{error}</div>}
           <Info>
             <b>Username: </b>
-            {user.username}
+            {user.name}
           </Info>
           <Info>
             <b>User Id: </b>
@@ -75,6 +75,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   background-color: #fff5d0;
 `;
+const H1 = styled(Link)``;
 const Container = styled.div`
   width: 100%;
   height: 100%;
