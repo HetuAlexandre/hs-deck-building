@@ -17,9 +17,6 @@ const SelectClasses = () => {
           <ImgCover />
           <Title>Select a class</Title>
         </DivCover>
-        {/* <Selection>
-          
-        </Selection> */}
         <Container>
           {classIds.map((classId) => {
             return (
@@ -51,12 +48,7 @@ const ImgCover = styled.div`
   height: 350px;
   /* object-fit: contain; */
 `;
-const Selection = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-`;
+
 const Title = styled.h2`
   font-size: 38px;
   color: white;
