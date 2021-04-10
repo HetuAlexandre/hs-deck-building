@@ -59,7 +59,7 @@ const ContainerDeck = styled.div`
   justify-content: center;
   width: 400px;
   height: 100%;
-  border: 20px ridge #8b4513;
+  border: 20px ridge #a86632;
   border-radius: 10px;
   z-index: 3;
 `;
@@ -70,7 +70,7 @@ const Header = styled.div`
   justify-content: center;
   height: 110px;
   padding: 20px;
-  border-bottom: 15px ridge #8b4513;
+  border-bottom: 15px ridge #a86632;
   position: relative;
 `;
 const Img = styled.img`
@@ -122,8 +122,8 @@ const Footer = styled.div`
   align-items: center;
   height: 80px;
   padding: 5px;
-  border-top: 15px ridge #8b4513;
-  background-color: #8b4513;
+  border-top: 15px ridge #a86632;
+  background-color: #a86632;
 `;
 const CopyButton = styled.button`
   justify-content: center;
