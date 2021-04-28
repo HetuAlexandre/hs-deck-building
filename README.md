@@ -18,8 +18,7 @@ Coming soon
 
 ## Technologies
 
-React, Redux, styled-components, Node.js, Express, MongoDb, jsonwebtoken, bcryptjs.
-The map uses Google map API with @react-google-maps/api and use-places-autocomplete
+The application was created with `create-react-app`, using `styled-components` for the styling. Users and decks are stored on a MongoDB database. The technologies used include: HTML, CSS, JavaScript, React, Node, Express, Redux, RESTful API, jsonwebtoken, bcryptjs. MongoDB.
 
 ## The project features list
 
