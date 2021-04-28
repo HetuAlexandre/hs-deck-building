@@ -34,13 +34,17 @@ The application was created with `create-react-app`, using `styled-components` f
 
 Deck Building exemple:
 
+Select a class
+
 <p align="center"><img src="frontend/public/images/classes_selection.png"></p>
+
+Choose your cards to build your favorite deck
 
 <p align="center"><img src="frontend/public/images/exemple_deck_building.png"></p>
 
 Mock up list of shared decks:
 
-<p align="center"><img src="./images/mockup_premade_list _deck.png"></p>
+<p align="center"><img src="frontend/public/images/mockup_premade_list _deck.png"></p>
 
 ## API used
 
