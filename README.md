@@ -1,6 +1,6 @@
 # Hearthstone Deck Building with Blizzard Hearthstone API using MERN stack
 
-<p align="center"><img src="./images/card_search.png" width="500"></p>
+<p align="center"><img src="frontend/public/images/card _search.png"></p>
 
 ## Introduction
 
