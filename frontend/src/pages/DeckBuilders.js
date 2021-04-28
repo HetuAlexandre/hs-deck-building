@@ -11,6 +11,7 @@ const DeckBuilders = () => {
   const { classId } = useParams();
   const [quantityCard, setQuantityCard] = useState(1);
   const [searchCards, setSearchCards] = useState("");
+
   const { cards, cardsStatus } = useContext(CardsContext);
   const nonHerosCards = cards && cards.filter((card) => card.cardTypeId !== 3);
   const dispatch = useDispatch();
@@ -90,9 +91,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 100%;
   z-index: -999;
+  background-color: #fff5d0;
 `;
 const Container = styled.div`
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   padding: 20px;
