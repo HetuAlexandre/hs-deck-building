@@ -48,7 +48,7 @@ const Signup = () => {
         .then((json) => {
           console.log(json);
           setStatus("idle");
-          if (json.status === 200) {
+          if (json.status === 201) {
             setUser(json.user);
             setError("");
             history.push("/");
@@ -62,10 +62,11 @@ const Signup = () => {
 
   return (
     <Wrapper>
+      <ImgCover />
       <Container>
         <H1>Sign Up</H1>
         <Form>
-          <label>Username</label>
+          <Label>Username</Label>
           <Input
             type={"name"}
             placeholder={"Enter Username"}
@@ -78,7 +79,7 @@ const Signup = () => {
               (usernameIsValid(form.name) ? "default" : "2px solid red")
             }
           />
-          <label>Email</label>
+          <Label>Email</Label>
           <Input
             type={"email"}
             placeholder={"Enter email"}
@@ -91,7 +92,7 @@ const Signup = () => {
               (emailIsValid(form.email) ? "default" : "2px solid red")
             }
           />
-          <label>Password</label>
+          <Label>Password</Label>
           <Input
             type={"password"}
             placeholder={"Enter password"}
@@ -125,6 +126,13 @@ const Wrapper = styled.div`
   background-color: #fff5d0;
   position: relative;
 `;
+const ImgCover = styled.div`
+  background-image: url(/images/bg_home.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+`;
 const Container = styled.div`
   justify-content: center;
   position: absolute;
@@ -135,11 +143,14 @@ const H1 = styled.h1`
   justify-content: center;
   font-size: 50px;
   font-weight: 900;
-  color: rgba(21, 26, 35, 0.95);
+  color: rgba(81, 203, 238, 1);
 `;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+`;
+const Label = styled.label`
+  color: lightgray;
 `;
 const Input = styled.input`
   margin-bottom: 20px;

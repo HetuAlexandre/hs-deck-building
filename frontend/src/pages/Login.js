@@ -54,10 +54,11 @@ const Login = () => {
 
   return (
     <Wrapper>
+      <ImgCover />
       <Container>
         <H1>SIGN IN</H1>
         <Form>
-          <label>Email</label>
+          <Label>Email</Label>
           <Input
             type={"email"}
             placeholder={"Enter email"}
@@ -70,7 +71,7 @@ const Login = () => {
               (emailIsValid(form.email) ? "default" : "2px solid red")
             }
           />
-          <label>Password</label>
+          <Label>Password</Label>
           <Input
             type={"password"}
             placeholder={"Enter password"}
@@ -84,14 +85,16 @@ const Login = () => {
             }
           />
 
-          {error && <div>{error}</div>}
-          {formError && <div>{formError}</div>}
+          {error && <Error>{error}</Error>}
+          {formError && <Error>{formError}</Error>}
         </Form>
         <Button onClick={handleClick}>
           {status === "idle" ? "Login" : <p>Loading...</p>}
         </Button>
+        <SignupDiv>
+          <SignupLink to="/signup">Create an account</SignupLink>
+        </SignupDiv>
       </Container>
-      <SignupLink to="/signup">Create an account</SignupLink>
     </Wrapper>
   );
 };
@@ -103,24 +106,32 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fff5d0;
   position: relative;
+`;
+const ImgCover = styled.div`
+  background-image: url(/images/bg_home.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
 `;
 const Container = styled.div`
   justify-content: center;
   position: absolute;
   top: 60px;
 `;
-
 const H1 = styled.h1`
   justify-content: center;
   font-size: 50px;
   font-weight: 900;
-  color: rgba(21, 26, 35, 0.95);
+  color: rgba(81, 203, 238, 1);
 `;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+`;
+const Label = styled.label`
+  color: lightgray;
 `;
 const Input = styled.input`
   margin-bottom: 20px;
@@ -149,6 +160,9 @@ const Button = styled.button`
     background-image: linear-gradient(90deg, #921b9a, #b921ca, #921b9a);
   }
 `;
+const SignupDiv = styled.div`
+  margin-top: 20px;
+`;
 const SignupLink = styled(Link)`
   margin-top: 100px;
   text-decoration: none;
@@ -157,6 +171,9 @@ const SignupLink = styled(Link)`
   &:hover {
     color: rgb(252, 209, 68);
   }
+`;
+const Error = styled.div`
+  color: red;
 `;
 
 export default Login;
