@@ -51,7 +51,7 @@ const signup = async (req, res) => {
     await client.connect();
     const db = client.db("hsdatabase");
     const user = {
-      _id: uuidv4(),
+      // _id: uuidv4(),
       name,
       email,
       password: hashPassword,
@@ -102,8 +102,8 @@ const login = async (req, res) => {
         error: "Password is incorrect.",
       });
     } else {
-      return res.status(200).json({
-        status: 200,
+      return res.status(201).json({
+        status: 201,
         message: "Logged in",
         userId: user._id,
         user,
