@@ -4,6 +4,7 @@ import styled from "styled-components";
 const PremadeDecks = () => {
   return (
     <Wrapper>
+      <ImgCover />
       <Container>
         <Table>
           <Slot>
@@ -22,7 +23,7 @@ const PremadeDecks = () => {
             <SpanTable>Date</SpanTable>
           </Slot>
         </Table>
-        <InsertDeck>
+        <InsertDeckTiff>
           <Slot>
             <Span>Dh Aggro</Span>
           </Slot>
@@ -38,7 +39,7 @@ const PremadeDecks = () => {
           <Slot>
             <Span>01-04-2021</Span>
           </Slot>
-        </InsertDeck>
+        </InsertDeckTiff>
         <InsertDeck>
           <Slot>
             <Span>Control Warrior</Span>
@@ -133,9 +134,16 @@ const Wrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-
+position:relative
   align-items: center;
   background-color: #fff5d0;
+`;
+const ImgCover = styled.div`
+  background-image: url(/images/bg_home.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
 `;
 const Container = styled.div`
   flex-direction: column;
@@ -144,6 +152,9 @@ const Container = styled.div`
   width: 80%;
   margin-top: 50px;
   border: 2px solid black;
+  position: absolute;
+  background-color: #fff5d0;
+  left: 10%;
 `;
 const Table = styled.div`
   display: flex;
@@ -159,6 +170,13 @@ const InsertDeck = styled.div`
   text-align: center;
   width: 100%;
   height: 60px;
+`;
+const InsertDeckTiff = styled.div`
+  display: flex;
+  text-align: center;
+  width: 100%;
+  height: 60px;
+  background-color: lightpink;
 `;
 const Slot = styled.div`
   width: 100%;
